@@ -1,0 +1,174 @@
+:root {
+    --white-but-not-white: #E7E7E7;
+    --light-grey: #E4E4E4;
+}
+
+html, body {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.container {
+    background-color: var(--white-but-not-white);
+    border: solid 1px var(--light-grey);
+    margin: 0.5em;
+    overflow-y: auto;
+}
+
+.buttons {
+    flex-grow: 10;
+    background-color: var(--white-but-not-white);
+    border: solid 1px var(--light-grey);
+    display: flex;
+}
+
+.terminal-colors input {
+    width: 100%;
+    height: 50%;
+}
+
+.right {
+    flex-grow: 100;
+    display: flex;
+}
+
+.left {
+    flex-grow: 190;
+    display: flex;
+    flex-direction: column;
+}
+
+.flex {
+    flex-grow: 100;
+}
+
+.cpu-container {
+    display: flex;
+    flex-grow: 100;
+}
+
+.coding-area {
+    flex-grow: 290;
+    padding-top: 0.3em;
+}
+
+.coding-area textarea {
+    height: 100%;
+    width: 100%;
+    padding: 1%;
+    box-sizing: border-box;         /* For IE and modern versions of Chrome */
+    -moz-box-sizing: border-box;    /* For Firefox                          */
+    -webkit-box-sizing: border-box; /* For Safari                           */
+    resize: none;
+}
+
+.terminal-colors {
+    display: block;
+    flex-direction: column;
+}
+
+.terminal-colors input {
+    width: 32px;
+    height: 32px;
+}
+
+th, td {
+    padding: 0.5em;
+    border-right: solid 1px black;
+    text-align: center;
+}
+
+table {
+    display: block;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+#cu-memory {
+    margin-left: 0;
+}
+
+#alu-memory {
+    margin-right: 0;
+}
+
+#main-memory {
+    margin-top: 0;
+}
+
+#main-memory input, #cu-memory input, #alu-memory input {
+    max-width: 5em;
+    height: 100%;
+    width: 100%;
+    background-color: inherit;
+    border: none;
+    text-align: right;
+}
+
+.settings {
+    background-image: url(https://banner2.kisspng.com/20180409/rbq/kisspng-gear-computer-icons-gears-5acc22cd6d46d8.1419366515233276934476.jpg);
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.settings-dialog {
+    position: absolute;
+    border-radius: 8px;
+    background-color: var(--white-but-not-white);
+    border: solid 1px var(--light-grey);
+    padding: 0.5em;
+    top: 20vh;
+    left: 50vw;
+}
+
+.settings-dialog legend {
+    border: solid 1px var(--light-grey);
+    background-color: var(--white-but-not-white);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.discrete-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.discrete-list li {
+    display: flex;
+    border-bottom: solid 1px grey;
+    margin-top: 8px;
+}
+
+.discrete-list li .key {
+    float: left;
+    flex-grow: 100;
+    margin-right: 16px;
+}
+
+.discrete-list li .value {
+    float: right;
+    flex-grow: 10;
+}
+
+.discrete-list li .value  input {
+    float: right;
+}
+
+.settings-dialog-body {
+    display: inline-flex;
+}
+
+.settings-dialog-body fieldset {
+    flex-grow: 100;
+}

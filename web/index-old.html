@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <link rel="stylesheet" type="text/css" href="styles-old.css">
+    <title>Title</title>
+</head>
+<body>
+<div class="flex left">
+    <div class="buttons">
+        <button class="flex" id="button-w2m">Write to Memory</button>
+        <button class="flex" id="button-next-search">Next Search Cycle</button>
+        <button class="flex" id="button-next-execution">Next Execution Cycle</button>
+        <button class="flex" id="button-next">Next Cycle</button>
+        <button class="flex" id="button-run">Run</button>
+
+        <div class="flex settings" id="toggle-settings" onclick="document.querySelector('#settings-dialog').classList.remove('hidden')">
+        </div>
+        <fieldset class="settings-dialog hidden" id="settings-dialog">
+            <legend onclick="document.querySelector('#settings-dialog').classList.add('hidden')" style="color: red">✘</legend>
+            <div class="settings-dialog-body">
+                <fieldset>
+                    <legend>Textarea Colors</legend>
+                    <ul class="discrete-list">
+                        <li>
+                            <div class="key">Background</div>
+                            <div class="value">
+                                <input type="color" value="#000000" class="mini-square" id="color-background">
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="key">Text</div>
+                            <div class="value">
+                                <input type="color" value="#41ED1E" class="mini-square" id="color-text">
+                            </div>
+                        </li>
+                    </ul>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Debugger Blacklist</legend>
+                    <div style="overflow-y: auto" id="debugger-filter">
+
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Numeric Base</legend>
+                    <select id="numeric-base-display">
+                        <option value="hex">Hexadecimal</option>
+                        <option value="dec">Decimal</option>
+                        <option value="bin">Binary</option>
+                    </select>
+                </fieldset>
+            </div>
+
+
+        </fieldset>
+
+    </div>
+    <div class="coding-area">
+        <textarea id="coding-area">aaaaa</textarea>
+    </div>
+    <div class="cpu-container">
+        <table class="flex container" id="cu-memory">
+        </table>
+        <table class="flex container" id="alu-memory">
+        </table>
+    </div>
+</div>
+<div class="flex right">
+    <table class="flex container" id="main-memory">
+
+    </table>
+</div>
+</body>
+<script src="kotlin.js"></script>
+<script src="WebIAS.js"></script>
+</html>
