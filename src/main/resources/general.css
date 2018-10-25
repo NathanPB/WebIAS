@@ -1,0 +1,63 @@
+hmtl, body {
+    min-height: 100vh;
+}
+
+#coding-area {
+    resize: none;
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    font-family: digital-7;
+}
+
+.title a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu-buttons{
+    background-color: #007bff;
+    border-radius: 4px;
+}
+
+.title .flashing {
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@font-face{
+    font-family:'digital-7';
+    src: url('assets/digital-7.ttf');
+}
+
+.beauty-bg {
+    background: #E7E7E7;
+    border: solid 1px #E4E4E4;
+    border-radius: 4px;
+}
+
+td {
+    text-align: center;
+}
+
+td input {
+    background: transparent;
+    border: none;
+    max-width: 5em;
+    text-align: center;
+}
+
+.o-scroll-y {
+    overflow-y: auto;
+}
+
+.label {
+    margin: auto;
+}
