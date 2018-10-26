@@ -61,3 +61,15 @@ td input {
 .label {
     margin: auto;
 }
+
+.dropdown-item {
+    cursor: pointer;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.right-align {
+    text-align: right;
+}

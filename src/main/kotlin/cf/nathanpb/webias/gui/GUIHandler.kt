@@ -4,6 +4,7 @@ import cf.nathanpb.webias.core.AssemblyParser
 import cf.nathanpb.webias.core.IASCore
 import org.w3c.dom.HTMLSelectElement
 import kotlin.browser.document
+import kotlin.dom.addClass
 
 
 class GUIHandler(val core : IASCore){
@@ -27,7 +28,15 @@ class GUIHandler(val core : IASCore){
             core.cpu.next()
         })
         document.querySelector("#button-w2m")?.addEventListener("click", {
-            AssemblyParser(core, terminal.dom.value).writeToMemory()
+            var text = "<span style='color: green;'>Assembled Successful</span>"
+            val telement = document.querySelector("#assembler-status-text")
+            try{
+                AssemblyParser(core, terminal.dom.value).writeToMemory()
+            } catch (ex: Exception) {
+                text = "<span style='color: red;'>${ex.message}</span>"
+            }
+            telement?.innerHTML = text
+            eval("$('#modal-assemblerstatus').modal({focus: true, show: true})")
         })
 
         document.querySelector("#debugger-filter").let{
