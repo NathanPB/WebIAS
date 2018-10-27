@@ -10,18 +10,17 @@ class IASCore {
     }
 
     val cpu = CPU(this)
-    val memory = MemoryArray<Long>(1024, "RAM")
+    val memory = MemoryArray<Int>(1024, "RAM")
 
 
-init {
-        for(i in 0L.until(memory.capacity)){
+    init {
+        for(i in 0.until(memory.capacity)){
             memory[i] = MemoryWord(0, 40)
         }
     }
     override fun toString(): String {
-        var cpu = cpu.ALU.toString()+"\n"+cpu.CU.toString()
-        val mem = memory.toString()
-        return "[CPU]\n$cpu\n\n[Memory]\n$mem"
+        val cpu = cpu.ALU.toString()+"\n"+cpu.CU.toString()
+        return "[CPU]\n$cpu\n\n[Memory]\n$memory"
     }
 }
 

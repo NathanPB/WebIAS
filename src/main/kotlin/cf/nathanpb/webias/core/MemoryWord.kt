@@ -26,19 +26,16 @@ class MemoryWord (decimal : Long, val size : Int){
         this.binary = num
         this.decimal = NumericUtils.binaryToDecimal(this.binary)
         this.hex = NumericUtils.binaryToHexa(binary)
-        Logger.debug(this::class){
-            this.toString()
-        }
     }
 
 
     fun firstOpcode() = MemoryWord(NumericUtils.binaryToDecimal(firstInstruction().binary.substring(0, 7)), 8)
-    fun firstAddress() = MemoryWord(NumericUtils.binaryToDecimal(firstInstruction().binary.substring(7, 20)), 8)
+    fun firstAddress() = MemoryWord(NumericUtils.binaryToDecimal(firstInstruction().binary.substring(8, 20)), 8)
 
     fun secondOpcode() = secondInstruction().firstOpcode()
     fun secondAddress() = secondInstruction().firstAddress()
 
-    fun firstInstruction() = MemoryWord(NumericUtils.binaryToDecimal(binary.substring(20, 39)), 20)
+    fun firstInstruction() = MemoryWord(NumericUtils.binaryToDecimal(binary.substring(20, 40)), 20)
     fun secondInstruction() = MemoryWord(NumericUtils.binaryToDecimal(binary.substring(0, 19)), 20)
 
 

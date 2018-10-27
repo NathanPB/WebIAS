@@ -1,6 +1,8 @@
 package cf.nathanpb.webias.utils
 
 import cf.nathanpb.webias.core.AssemblyParser
+import cf.nathanpb.webias.core.MemoryArray
+import cf.nathanpb.webias.gui.MemoryTable
 import kotlin.reflect.KClass
 
 class Logger {
@@ -9,7 +11,8 @@ class Logger {
         //todo colcoar isso em uma gui
         val blacklist = arrayOf(
                 NumericUtils::class,
-                AssemblyParser::class
+                MemoryArray::class,
+                MemoryTable::class
         )
 
         fun debug(from : KClass<*>, run : () -> Any){

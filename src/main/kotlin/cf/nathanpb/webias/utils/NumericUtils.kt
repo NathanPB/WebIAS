@@ -29,13 +29,7 @@ class NumericUtils {
         }
 
         fun binaryToDecimal(num : String) : Long {
-            var output = 0L
-            for(i in (0..num.length)) {
-                val current = num.reversed()[i]
-                if(current == '1') {
-                    output += (2.0).pow(i).toInt()
-                }
-            }
+            var output = num.toLong(2)
             Logger.debug(NumericUtils::class) {"Converting from binary to decimal: $num is $output"}
             return output
         }

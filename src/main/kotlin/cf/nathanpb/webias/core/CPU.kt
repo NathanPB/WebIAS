@@ -35,7 +35,7 @@ class CPU(val core : IASCore) {
     fun nextSearchCycle() {
         if(CU["IBR"].isEmpty()) {
             CU["MAR"] = CU["PC"]
-            val word = core.memory[CU["PC"].decimal]
+            val word = core.memory[CU["PC"].decimal.toInt()]
             CU["IR"] = word.firstInstruction()
             CU["IBR"] = word.secondInstruction()
             core.memory.read(this)
