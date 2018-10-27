@@ -9,7 +9,7 @@ hmtl, body {
 }
 
 .title {
-    font-family: digital-7;
+    /*font-family: digital-7;*/
 }
 
 .title a {
@@ -72,4 +72,18 @@ td input {
 
 .right-align {
     text-align: right;
+}
+
+.assembler-list {
+    max-width: 100%;
+}
+
+.assembler-list li {
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+#main-memory {
+    max-height: 100vh !important;
+    overflow-y: scroll !important;
 }

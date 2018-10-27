@@ -28,10 +28,19 @@ class GUIHandler(val core : IASCore){
             core.cpu.next()
         })
         document.querySelector("#button-w2m")?.addEventListener("click", {
-            var text = "<span style='color: green;'>Assembled Successful</span>"
+            var text = "<span style='color: green;'>Assembled Successful</span>\n"
             val telement = document.querySelector("#assembler-status-text")
+            val tlist = document.querySelector("#assembler-status-list")
+
+            telement?.innerHTML = ""
+            tlist?.innerHTML = ""
             try{
-                AssemblyParser(core, terminal.dom.value).writeToMemory()
+                val parser = AssemblyParser(core, terminal.dom.value)
+                parser.writeToMemory()
+                parser.changes
+                    .map { "M[${it.key}] = ${it.value}" }
+                    .forEach { tlist?.innerHTML += "\n<li class='list-group-item'>$it</li>" }
+
             } catch (ex: Exception) {
                 text = "<span style='color: red;'>${ex.message}</span>"
             }

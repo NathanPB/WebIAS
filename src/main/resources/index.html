@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col">
                     <div class="row p-1 m-1 beauty-bg">
-                        <span class="title">NathanPB@WebIAS:~# <a href="https://github.com/NathanPB/WebIAS/" target="_blank">https://github.com/NathanPB/WebIAS/</a><span class="flashing">_</span></span>
+                        <span class="title">nathanpb@webias:~# <a href="https://github.com/NathanPB/WebIAS/" target="_blank">https://github.com/NathanPB/WebIAS/</a><span class="flashing">_</span></span>
                     </div>
                     <div class="row p-1 m-1">
                         <div class="btn-group w-100 menu-buttons" role="group" aria-label="Menu">
@@ -70,7 +70,7 @@
         <div class="col-4" style="margin-left: 0; padding-left: 0;">
             <div class="row p-1 m-1 p-1 beauty-bg o-scroll-y">
                 <label class="label">Random Access Memory</label>
-                <table class="table table-hover" id="main-memory" style="height: 100vh;"></table>
+                <table class="table table-hover" id="main-memory"></table>
             </div>
         </div>
     </div>
@@ -91,7 +91,7 @@
                             Text Color
                         </div>
                         <div class="col-6 right-align">
-                            <input type="color" value="#41ED1E" class="mini-square" id="color-text">
+                            <input type="color" value="#41ED1E" id="color-text">
                         </div>
                     </div>
                     <div class="row">
@@ -99,7 +99,7 @@
                             Background Color
                         </div>
                         <div class="col-6 right-align">
-                            <input type="color" value="#000000" class="mini-square" id="color-background">
+                            <input type="color" value="#000000" id="color-background">
                         </div>
                     </div>
                 </div>
@@ -152,7 +152,6 @@
         </div>
     </div>
 
-
     <!-- Modal Assembler Status -->
     <div class="modal" tabindex="-1" role="dialog" id="modal-assemblerstatus">
         <div class="modal-dialog" role="document">
@@ -163,8 +162,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" id="assembler-status-text">
-
+                <div class="modal-body p-4">
+                    <span id="assembler-status-text"></span>
+                    <ul id="assembler-status-list" class="list-group assembler-list"></ul>
                 </div>
             </div>
         </div>
