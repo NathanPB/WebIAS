@@ -10,6 +10,10 @@ import kotlin.dom.clear
 
 class MemoryTable<T>(val domid : String, val data : MemoryArray<T>) {
 
+    val tooltip = "<span class=\"d-inline-block\" tabindex=\"0\" data-toggle=\"tooltip\" title=\"%text%\">\n" +
+            "  %content%\n" +
+            "</span>"
+
     val dom = document.getElementById(domid) as HTMLElement
 
     init {
@@ -34,8 +38,6 @@ class MemoryTable<T>(val domid : String, val data : MemoryArray<T>) {
         for(w in this.data){
             val tr = document.createElement("tr")
             val inp = document.createElement("input") as HTMLInputElement
-            val size = document.createElement("input") as HTMLInputElement
-            size.value = w.value.size.toString()
 
             inp.value = when(GUIHandler.numBase.value){
                 "hex" -> w.value.hex
@@ -54,21 +56,28 @@ class MemoryTable<T>(val domid : String, val data : MemoryArray<T>) {
                     println(e.message)
                 }
             })
-            size.addEventListener("change", {
-                try{
-                    data[w.key] = MemoryWord(w.value.decimal, size.value.toInt())
-                } catch (e : Exception){}
-            })
 
-            tr.innerHTML += "<td>${w.key}</td>\n"
+
+
+            tr.innerHTML += "<td>"+when(w.key.toString()){
+                "AC" -> tooltip.replace("%text%", "Accumulator | Temporary register used to store results from logic operations")
+                "MQ" -> tooltip.replace("%text%", "Multiplier Quotient | Temporary register used to store results from logic operations")
+                "MBR" -> tooltip.replace("%text%", "Memory Buffer Register | Used to temporarily store data read from memory or to be written")
+                "IR" -> tooltip.replace("%text%", "Instruction Register | Stores the instruction being executed")
+                "PC" -> tooltip.replace("%text%", "Program Counter | Stores the memory address pointing to the next word to be executed")
+                "IBR" -> tooltip.replace("%text%", "Instruction Buffer Register | Stores the second instruction from the current word being executed")
+                "MAR" -> tooltip.replace("%text%", "Memory Address Register | Stores a memory address that will be read from memory on read or write process")
+                else -> "%content%"
+            }.replace("%content%", w.key.toString())+"</td>"
             var td = document.createElement("td") as HTMLElement
             td.appendChild(inp)
             tr.appendChild(td)
 
             td = document.createElement("td") as HTMLElement
-            td.appendChild(size)
+            td.innerHTML += w.value.size.toString()
             tr.appendChild(td)
             el.append(tr)
         }
+        eval("$(document).ready(function(){$('[data-toggle=\"tooltip\"]').tooltip(); });")
     }
 }
