@@ -15,6 +15,7 @@ class LoadMQMX : Instruction {
     override val argswordsize = 20
 
     override fun run(core: IASCore) {
+        cf.nathanpb.webias.utils.Logger.debug(this::class){"Run: ${this::class.simpleName}"}
         core.cpu.CU["MAR"] = core.cpu.CU["IR"].firstAddress()
         core.memory.read(core.cpu)
         core.cpu.ALU["MQ"] = core.cpu.ALU["MBR"]

@@ -3,6 +3,7 @@ package cf.nathanpb.webias.core.instructions
 import cf.nathanpb.webias.core.IASCore
 import cf.nathanpb.webias.core.InstructionType
 import cf.nathanpb.webias.core.MemoryWord
+import cf.nathanpb.webias.utils.Logger
 
 class LoadMQ : Instruction {
     override val opcode = 10
@@ -12,6 +13,7 @@ class LoadMQ : Instruction {
     override val argswordsize = 0
 
     override fun run(core: IASCore) {
+        Logger.debug(this::class){"Run: ${this::class.simpleName}"}
         core.cpu.ALU["AC"] = core.cpu.ALU["MQ"]
     }
 
