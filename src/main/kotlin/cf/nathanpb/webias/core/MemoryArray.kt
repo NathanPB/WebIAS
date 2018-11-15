@@ -3,14 +3,14 @@ package cf.nathanpb.webias.core
 import cf.nathanpb.webias.utils.Logger
 import cf.nathanpb.webias.gui.MemoryTable
 
-class MemoryArray<T>(val capacity: Int, val name : String) : HashMap<T, MemoryWord>(capacity) {
+open class MemoryArray<T>(val capacity: Int, val name : String) : HashMap<T, MemoryWord>(capacity) {
 
     private val links = ArrayList<MemoryTable<T>>()
 
-    override fun get(index: T): MemoryWord {
-        val a = super.get(index) ?: MemoryWord(0, 0)
+    override fun get(key: T): MemoryWord {
+        val a = super.get(key) ?: MemoryWord(0, 0)
         Logger.debug(this::class) {
-            "[$name] Internal Memory Read: [$index] = $a"
+            "[$name] Internal Memory Read: [$key] = $a"
         }
         return a
     }
@@ -25,11 +25,11 @@ class MemoryArray<T>(val capacity: Int, val name : String) : HashMap<T, MemoryWo
     }
 
     fun read(cpu : CPU) {
-        cpu.ALU["MBR"] = this[cpu.CU["MAR"].decimal as T]
+        cpu.ALU.MBR = this[cpu.CU.MAR.decimal as T]
     }
 
     fun write(cpu : CPU) {
-        this[cpu.CU["MAR"].decimal as T] =  cpu.ALU["MBR"]
+        this[cpu.CU.MAR.decimal as T] =  cpu.ALU.MBR
     }
 
     override fun toString(): String {

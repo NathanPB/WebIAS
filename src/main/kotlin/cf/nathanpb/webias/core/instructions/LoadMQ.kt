@@ -14,7 +14,7 @@ class LoadMQ : Instruction {
 
     override fun run(core: IASCore) {
         Logger.debug(this::class){"Run: ${this::class.simpleName}"}
-        core.cpu.ALU["AC"] = core.cpu.ALU["MQ"]
+        core.cpu.ALU.AC = core.cpu.ALU.MQ
     }
 
     override fun parseArgument(text: String) = MemoryWord(0, 12)

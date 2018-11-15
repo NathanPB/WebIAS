@@ -5,34 +5,15 @@ import kotlin.math.pow
 class NumericUtils {
     companion object {
 
-        /*
-        fun hexaToDecimal(){
+        fun hexaToDecimal(hex: String) = if(hex.isEmpty()) 0L else hex.toLong(16)
+        fun hexToBinary(hex: String) = if(hex.isEmpty()) "0" else decimalToBinary(hex.toLong(16))
 
-        }
-
-        fun hexaToBinary(){
-
-        }
-
-
-        fun decimalToHexa(){
-
-        }
-        */
-
+        fun decimalToHex(num: Long) = num.toString(16).toUpperCase()
         fun decimalToBinary(num : Long) = num.toString(2)
 
-        fun binaryToHexa(num : String) : String {
-            val a = binaryToDecimal(num).toString(16).toUpperCase()
-            Logger.debug(NumericUtils::class){"Convertin from binary to hexadecimal: $num is $a"}
-            return a
-        }
+        fun binaryToHex(num : String) = binaryToDecimal(num).toString(16).toUpperCase()
+        fun binaryToDecimal(num : String) = if(num.isEmpty()) 0L else num.toLong(2)
 
-        fun binaryToDecimal(num : String) : Long {
-            var output = num.toLong(2)
-            Logger.debug(NumericUtils::class) {"Converting from binary to decimal: $num is $output"}
-            return output
-        }
 
         fun getType(num : Any) : NumericType {
             var num = num.toString()
@@ -47,12 +28,6 @@ class NumericUtils {
             }
             Logger.debug(NumericUtils::class) {"Finding numeric type: $num is $type"}
             return type
-        }
-
-        fun pad(str : String, size : Int) : String {
-            var str = str
-            while (str.length < size) str = "0$str"
-            return str
         }
 
         fun prefix(num : Any) = getType(num).prefix+num

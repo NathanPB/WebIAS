@@ -17,8 +17,8 @@ class StorMX : Instruction {
 
     override fun run(core: IASCore) {
         Logger.debug(this::class){"Run: ${this::class.simpleName}"}
-        core.cpu.ALU["MBR"] = core.cpu.ALU["AC"]
-        core.cpu.CU["MAR"] = core.cpu.CU["IR"].firstAddress()
+        core.cpu.ALU.MBR = core.cpu.ALU.AC
+        core.cpu.CU.MAR = core.cpu.CU.IR.leftAddress()
         core.memory.read(core.cpu)
     }
 

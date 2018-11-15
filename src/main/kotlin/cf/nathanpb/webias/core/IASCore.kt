@@ -5,7 +5,7 @@ import cf.nathanpb.webias.gui.GUIHandler
 class IASCore {
 
     companion object {
-        var instance : IASCore? = null
+        var instance : IASCore = IASCore()
         var debug = true
     }
 
@@ -14,8 +14,8 @@ class IASCore {
 
 
     init {
-        for(i in 0.until(memory.capacity)){
-            memory[i] = MemoryWord(0, 40)
+        0.until(memory.capacity).withIndex().forEach {
+            memory[it.index] = MemoryWord(0, 40)
         }
     }
     override fun toString(): String {
@@ -25,7 +25,5 @@ class IASCore {
 }
 
 fun main(args : Array<String>){
-    IASCore.instance = IASCore()
-    IASCore.instance!!.memory[1] = MemoryWord(10, 40)
-    GUIHandler(IASCore.instance as IASCore)
+    GUIHandler(IASCore.instance)
 }

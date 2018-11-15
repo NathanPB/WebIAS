@@ -11,8 +11,8 @@ class Logger {
         //todo colcoar isso em uma gui
         val blacklist = arrayOf(
                 NumericUtils::class,
-                MemoryArray::class,
-                MemoryTable::class
+                MemoryTable::class,
+                AssemblyParser::class
         )
 
         fun debug(from : KClass<*>, run : () -> Any){

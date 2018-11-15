@@ -4,7 +4,6 @@ import cf.nathanpb.webias.core.AssemblyParser
 import cf.nathanpb.webias.core.IASCore
 import org.w3c.dom.HTMLSelectElement
 import kotlin.browser.document
-import kotlin.dom.addClass
 
 
 class GUIHandler(val core : IASCore){

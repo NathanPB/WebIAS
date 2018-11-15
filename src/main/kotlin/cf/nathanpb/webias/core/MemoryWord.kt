@@ -1,9 +1,14 @@
 package cf.nathanpb.webias.core
 
-import cf.nathanpb.webias.utils.Logger
 import cf.nathanpb.webias.utils.NumericUtils
+import cf.nathanpb.webias.utils.StringUtils
 
 class MemoryWord (decimal : Long, val size : Int){
+
+    companion object {
+        val EMPTY = MemoryWord(0, 1)
+    }
+
 
     val bitarray : Array<Boolean>
     val decimal : Long
@@ -13,30 +18,33 @@ class MemoryWord (decimal : Long, val size : Int){
     val binrev : String
 
     init {
+        if(size < 0){
+            throw Exception("Size must be a positive integer")
+        }
         var num = NumericUtils.decimalToBinary(decimal)
         val bitbuffer = Array(size){false}
-        for(i in 0 until size){
+        for(i in 0 .. size){
             bitbuffer[i] = num[i] == '1'
         }
 
-        num = NumericUtils.pad(num.substring(0, size-1), size)
+        num = StringUtils.pad(num.substring(0, size), size)
 
         this.bitarray = bitbuffer
         this.binrev = num.reversed()
         this.binary = num
         this.decimal = NumericUtils.binaryToDecimal(this.binary)
-        this.hex = NumericUtils.binaryToHexa(binary)
+        this.hex = NumericUtils.binaryToHex(binary)
     }
 
 
-    fun firstOpcode() = MemoryWord(NumericUtils.binaryToDecimal(firstInstruction().binary.substring(0, 7)), 8)
-    fun firstAddress() = MemoryWord(NumericUtils.binaryToDecimal(firstInstruction().binary.substring(8, 20)), 8)
+    fun leftOpcode() = MemoryWord(NumericUtils.binaryToDecimal(leftInstruction().binary.substring(0, 8)), 8)
+    fun leftAddress() = MemoryWord(NumericUtils.binaryToDecimal(leftInstruction().binary.substring(8, 20)), 8)
 
-    fun secondOpcode() = secondInstruction().firstOpcode()
-    fun secondAddress() = secondInstruction().firstAddress()
+    fun rightOpcode() = rightInstruction().leftOpcode()
+    fun rightAddress() = rightInstruction().leftAddress()
 
-    fun firstInstruction() = MemoryWord(NumericUtils.binaryToDecimal(binary.substring(20, 40)), 20)
-    fun secondInstruction() = MemoryWord(NumericUtils.binaryToDecimal(binary.substring(0, 19)), 20)
+    fun leftInstruction() = MemoryWord(NumericUtils.binaryToDecimal(binary.substring(0, 20)), 20)
+    fun rightInstruction() = MemoryWord(NumericUtils.binaryToDecimal(binary.substring(20, 40)), 20)
 
 
     override fun toString() = "[0x$hex\t10x$decimal\t2x$binary]"

@@ -16,9 +16,9 @@ class LoadMQMX : Instruction {
 
     override fun run(core: IASCore) {
         cf.nathanpb.webias.utils.Logger.debug(this::class){"Run: ${this::class.simpleName}"}
-        core.cpu.CU["MAR"] = core.cpu.CU["IR"].firstAddress()
+        core.cpu.CU.MAR = core.cpu.CU.IR.leftAddress()
         core.memory.read(core.cpu)
-        core.cpu.ALU["MQ"] = core.cpu.ALU["MBR"]
+        core.cpu.ALU.MQ = core.cpu.ALU.MBR
     }
 
     override fun parseArgument(text: String): MemoryWord {
